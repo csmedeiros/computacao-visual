@@ -1,0 +1,7 @@
+AC03 - Geometric Park - Caio Medeiros
+
+A cena inteira é gerada pelo script AC03_CaioMedeiros.py (Python/bpy); nada foi modelado à mão. Os elementos 2D (quadrado = Plane, triângulo = malha criada por vértices, círculo = Circle com N-gon) ficam deitados no plano XY. Os 3D são cubo, cilindro e UV sphere, mais uma esfera pequena.
+Transformações no script: location (posição de todos os objetos), rotation_euler (ângulos em graus convertidos com math.radians, ex.: 15°, 195°, 360°) e scale (quadrado 1.2, cilindro alongado em Z 1.5, cubo e esfera animados).
+Espaço local x global: a esfera laranja é filha do cilindro; sua location (1.8, 0, 0.5) está no espaço local do pai, então ela orbita quando o cilindro gira 360° em Z (bônus de hierarquia).
+Animação (frames 1-96, 24 fps = 4 s): o triângulo (2D) translada de X=-1.5 a X=1.5 e gira 360° em Z; o cubo (3D) escala de 1 a 1.8 (pico no frame 48, com interpolação suave) e volta a 1 enquanto gira 15° -> 195° em Z, com location Z ajustada para não afundar no chão; a esfera "respira" (scale) em ciclos de 24 frames (variação temporal).
+Parte manual: apenas executar o script e escolher o frame do render (36). Parte via script: criação, materiais, câmera, luz, keyframes, render e salvamento do .blend.
