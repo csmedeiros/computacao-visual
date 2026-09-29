@@ -1,0 +1,8 @@
+Curva-guia 'Voo_Foguete' (Auxiliares) - referência para animar o L_I_dot / foguete na AP2
+
+frame 1: Início - céu sobre o Rio -> (-395.0, -403.0, 34.0)
+frame 120: Sobrevoo em alta velocidade -> (-190.0, -8.0, 22.0)
+frame 170: Aproximação final -> (20.5, -6.0, 6.0)
+frame 192: Impacto na fachada -> (20.3, -1.0, 1.6)
+
+Na AP2: animar a posição do foguete-I ao longo desta curva (Follow Path ou keyframes manuais nesses frames), e apontar a Cam_Main para acompanhar o movimento nesse mesmo intervalo.

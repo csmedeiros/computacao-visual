@@ -1,0 +1,13 @@
+Créditos das imagens de fundo
+
+1) Rio C (baía e Pão de Açúcar) - textures/rio_c_*.jpg|png
+   Título: Panorama do Rio de Janeiro a partir do Parque das Ruínas 2024 11 24.jpg
+   Autor: Tet | Licença: CC BY 4.0
+   Fonte: https://commons.wikimedia.org/wiki/File:Panorama_do_Rio_de_Janeiro_a_partir_do_Parque_das_Ru%C3%ADnas_2024_11_24.jpg
+   Obra derivada: recortada em camadas (céu, meio, primeiro plano) para paralaxe.
+
+2) Avenida Armando Lombardi (fundo da unidade Barra) - textures/rua_dir.jpg, rua_esq.jpg
+   Capturas de tela do Google Street View (Imagem © Google), uso acadêmico.
+   Referências de fachada: ref/rua_frente.png, rua_perfil.png, rua_direita.png, rua_esquerda.png.
+
+(O panorama da Pedra Bonita, CC BY-SA 4.0, foi descartado e não é mais usado; os arquivos rio_b_* podem ser apagados de textures/.)
