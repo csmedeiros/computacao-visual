@@ -10,6 +10,7 @@ Repositório da disciplina de **Computação Gráfica** — Engenharia da Comput
 | AC02 | 16/09/2026 | — |
 | AC03 | 23/09/2026 | — |
 | AC04 | 21/10 / 28/10 / 12/11/2026 | — |
+| AC05 | — | Materiais PBR e texturas na cena Ibmec (ver `AC05/AC05_CaioMedeiros_relatorio.md`) |
 
 ## AC01 — Áreas da Computação Visual
 
