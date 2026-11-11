@@ -11,7 +11,6 @@
 | Render de detalhe (`Cam_Comparacao`, a mesma câmera de apoio da AC04) | `AC05_CaioMedeiros_render_detalhe.png` |
 | Captura do Shader Editor (Base Color + Roughness + Normal) | `AC05_CaioMedeiros_shader_editor.png` |
 | Captura do UV Editor (cadeira) | `AC05_CaioMedeiros_uv_editor.png` |
-| Script que aplica tudo (reprodutível) | `ac05_materiais_pbr.py` |
 | Texturas PBR externas (também empacotadas no `.blend`) | `textures_pbr/` |
 
 ## Continuidade da AC04
@@ -91,5 +90,5 @@ Observado nos renders (`AC05_CaioMedeiros_render.png` e `AC05_CaioMedeiros_rende
 
 ## 8. Observações
 
-- O `.blend`, os dois renders e as capturas do Shader Editor e do UV Editor foram gerados e salvos no **Blender 4.5.14 LTS** (EEVEE Next), a mesma versão da AC04. Conferido ao abrir o arquivo no 4.5.14: ligações e espaços de cor dos mapas, UVs e imagens empacotadas (nenhuma externa sem pacote). O script `ac05_materiais_pbr.py` foi executado nessa versão.
+- O `.blend`, os dois renders e as capturas do Shader Editor e do UV Editor foram gerados e salvos no **Blender 4.5.14 LTS** (EEVEE Next), a mesma versão da AC04. Conferido ao abrir o arquivo no 4.5.14: ligações e espaços de cor dos mapas, UVs e imagens empacotadas (nenhuma externa sem pacote).
 - O render entregue é do modo Rendered (EEVEE), pela câmera principal; não fiz capturas separadas do Material Preview.
