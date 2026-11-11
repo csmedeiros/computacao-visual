@@ -7,91 +7,89 @@
 | Item | Arquivo |
 |------|---------|
 | Cena com materiais, UVs e texturas (imagens empacotadas) | `AC05_CaioMedeiros.blend` |
-| Render final pela câmera principal (`Cam_Main`, quadro 300, 1920×1080) | `AC05_CaioMedeiros_render.png` |
-| Captura do Shader Editor (Base Color + Roughness + Metallic + Normal) | `AC05_CaioMedeiros_shader_editor.png` |
+| Render final pela câmera principal (`Cam_Main`, 1920×1080, quadro 59 como na AC04) | `AC05_CaioMedeiros_render.png` |
+| Render de detalhe (`Cam_Comparacao`, a mesma câmera de apoio da AC04) | `AC05_CaioMedeiros_render_detalhe.png` |
+| Captura do Shader Editor (Base Color + Roughness + Normal) | `AC05_CaioMedeiros_shader_editor.png` |
 | Captura do UV Editor (cadeira) | `AC05_CaioMedeiros_uv_editor.png` |
 | Script que aplica tudo (reprodutível) | `ac05_materiais_pbr.py` |
 | Texturas PBR externas (também empacotadas no `.blend`) | `textures_pbr/` |
 
-## Continuidade da cena
+## Continuidade da AC04
 
-- A AC04 não tem arquivo no repositório (a pasta `AC04/` está vazia), então a cópia de partida foi a cena mais recente, a **AP2** (`AP2/ap2_ibmec.blend`), salva como `AC05_CaioMedeiros.blend`. Os arquivos da AP1 e da AP2 não foram alterados.
-- Composição, câmera, animação e iluminação foram preservadas. A palavra **Ibmec** mantém a cor branca e o ponto/“e” amarelo, sem textura nem relevo.
-- Todos os materiais da cena foram renomeados com nomes descritivos (`MAT_*`).
+- A cena parte de uma **cópia** de `AC04/AC04_CaioMedeiros.blend`; os arquivos da AP1, AP2 e AC04 não foram alterados.
+- Composição, câmera `Cam_Main`, luzes (`Luz_Key`, `Luz_Fill`, `Luz_Rim`, `Sol`), posição das cadeiras e a palavra/logo **Ibmec** são os da AC04.
+- Os materiais **Lambert, Phong e Blinn-Phong** da AC04 foram substituídos por materiais PBR (abaixo). Eles continuam existindo no arquivo da AC04.
+- Todos os materiais foram renomeados com nomes descritivos (`MAT_*`). A placa/logo Ibmec continua com as mesmas cores (branco `(1,1,1)`, amarelo `(0,91; 0,41; 0)` e azul da placa), agora em PBR sem textura nem relevo.
 
 ## 1. Objetos autorais e materiais aplicados
 
-| # | Objeto autoral | Objetos no Blender | Material | Tipo de superfície |
-|---|----------------|--------------------|----------|--------------------|
-| 1 | **Cadeiras** (estrutura/pernas) | `Cad_01`…`Cad_04`, `Sala_Cad1`…`Sala_Cad6` (malha `Cad` compartilhada) | `MAT_Metal_Escovado_PBR` | Metal (chapa de aço) com texturas de imagem |
-| 2 | **Carteiras e mesa do professor** | `Sala_Cart`, `Sala_Cart2`, `Sala_Mesa` | `MAT_Madeira_PBR` | Madeira com texturas de imagem |
-| 3 | **Espelho** (fachada da Barra + painel na sala) | `Barra_Vidro` e `Espelho_Sala` (coleção `AC05_Materiais_Texturas`) | `MAT_Espelho_PBR` | Espelho, cor sólida |
+Os três objetos autorais são os mesmos da AC04: corpo da Barra, arco da fachada e cadeiras.
 
-Os assentos das cadeiras usam `MAT_Assento_Azul_PBR` (plástico, mesma cor azul-escura da AP2). A palavra Ibmec usa `MAT_Ibmec_Branco_PBR` e `MAT_Ibmec_Amarelo_PBR`.
-
-> O 3º objeto: a fachada 3D da Barra quase não aparece na câmera principal (só as bordas, no quadro ~258). Por isso adicionei, como elemento auxiliar, o painel `Espelho_Sala` (2,6 × 2,8 m, girado ~26°) pendurado à direita das letras, para o espelho ser visto no render final. Ele está na coleção `AC05_Materiais_Texturas`.
+| # | Objeto autoral | Objetos no Blender | Material | Aparência |
+|---|----------------|--------------------|----------|-----------|
+| 1 | **Cadeiras** (assento e encosto) | `Cad_01` … `Cad_04` (antes Lambert, Phong, Blinn-Phong) | `MAT_Madeira_PBR` | Madeira escura, com texturas de imagem |
+| 2 | **Arco e pilares da fachada** | `Barra_Arco`, `Barra_Pilar` (antes Phong); pernas das cadeiras usam o mesmo metal | `MAT_Metal_Azul_PBR` e `MAT_Metal_Azul_Arco_PBR` | Metal pintado de azul, com texturas de imagem |
+| 3 | **Corpo da Barra** (coberturas das alas + vidro da entrada) | `Barra_Ala` (slot que era Lambert) e `Barra_Vidro` | `MAT_Espelho_PBR` | Espelho, cor sólida |
 
 ## 2. Propriedades principais dos materiais
 
 | Material | Base Color | Roughness | Metallic | Outros |
 |----------|-----------|-----------|----------|--------|
-| `MAT_Metal_Escovado_PBR` | mapa `metal_plate_diff` (sRGB) | mapa `metal_plate_rough` | mapa `metal_plate_metal` | Normal Map (força 1,0); mapeamento 2× (textura de 0,5 m) |
-| `MAT_Madeira_PBR` | mapa `wood_table_001_diff` (sRGB) | mapa `wood_table_001_rough` | 0 (não metal) | Normal Map (força 1,0); mapeamento 1/1,5 (textura de 1,5 m) |
+| `MAT_Madeira_PBR` | mapa `wood_table_001_diff` | mapa `wood_table_001_rough` | 0 (não metal) | Normal Map, força 1,0; escala do Mapping 0,417 (textura de 1,5 m e cadeiras com escala 1,6) |
+| `MAT_Metal_Azul_PBR` | mapa `blue_metal_plate_diff` | mapa `blue_metal_plate_rough` | 0,85 constante | Normal Map, força 1,0; escala 0,4 (textura de 2,5 m) |
+| `MAT_Metal_Azul_Arco_PBR` | igual ao anterior | igual ao anterior | 0,85 | Escala do Mapping (2,135; 0,352), ver seção 4 |
 | `MAT_Espelho_PBR` | (0,92; 0,94; 0,97) | 0,03 | 1,0 | sem textura |
-| `MAT_Assento_Azul_PBR` | cor sólida da AP2 | 0,45 | 0 | — |
 | `MAT_Ibmec_Branco_PBR` | (1,0; 1,0; 1,0) | 0,35 | 0 | sem textura/relevo |
 | `MAT_Ibmec_Amarelo_PBR` | (0,91; 0,41; 0,0) | 0,35 | 0 | sem textura/relevo |
 
-Metalicidade alta só no metal e no espelho; madeira, plástico e a palavra Ibmec usam Metallic = 0.
+A textura Blue Metal Plate não traz mapa Metallic, por isso o Metallic do metal pintado é um valor constante (0,85); a madeira, não metálica, usa 0.
 
 ## 3. Mapas utilizados e ligações
 
-Verificado no arquivo salvo (ver captura `AC05_CaioMedeiros_shader_editor.png`):
+Conferido no arquivo salvo (ver `AC05_CaioMedeiros_shader_editor.png`, material da madeira):
 
 | Mapa | Espaço de cor | Ligação |
 |------|---------------|---------|
 | Base Color (`*_diff_2k.jpg`) | **sRGB** | Color → **Base Color** do Principled BSDF |
 | Roughness (`*_rough_2k.jpg`) | **Non-Color** | Color → **Roughness** |
-| Metallic (`metal_plate_metal_2k.jpg`, opcional, só no metal) | **Non-Color** | Color → **Metallic** |
 | Normal OpenGL (`*_nor_gl_2k.jpg`) | **Non-Color** | Color → nó **Normal Map** (espaço tangente, UV `UVMap`) → **Normal** do Principled BSDF |
 
-Os três canais (Base Color, Roughness e Normal) estão no material do metal e também no da madeira, ou seja, **dois objetos** recebem texturas de imagem completas. Todas as texturas passam por `Texture Coordinate (UV)` → `Mapping` (repetição ligada).
+Madeira e metal têm os três mapas (Base Color, Roughness e Normal), ou seja, **dois objetos** recebem texturas de imagem completas. Todas as texturas passam por `Texture Coordinate (UV)` → `Mapping` (repetição ligada). Não usei mapa Metallic (opcional).
 
 ## 4. UVs
 
-- **Método:** projeção em caixa (*box projection*) em escala real. Cada face é projetada no plano do eixo dominante da sua normal, com coordenadas em **metros** (1 unidade de UV = 1 m). Assim a densidade da textura é a mesma em todas as faces e as faces planas não sofrem distorção.
-- **Malhas com UV nova:** `Cad` (cadeiras), `Sala_Cart` (carteiras) e `Sala_Mesa` (mesa). Mapa `UVMap` em cada uma.
-- **Escala:** o nó Mapping ajusta a repetição ao tamanho real de cada textura (0,5 m para a chapa de metal, 1,5 m para a madeira).
-- **Limitação conhecida:** na projeção em caixa, faces opostas (frente/trás) caem no mesmo lugar do UV e **as ilhas se sobrepõem** (visível no UV Editor). Isso não atrapalha texturas repetidas (*tileable*), mas não serviria para *baking* de mapas únicos. As cadeiras do fundo da sala usam escala de objeto 1,6, o que amplia levemente a textura nelas em relação às de escala 1,0.
+- **Cadeiras (`Cad_01`…`Cad_04`) e pilares (`Barra_Pilar`):** projeção em caixa (*box projection*) em escala real. Cada face é projetada no plano do eixo dominante da sua normal, com coordenadas em **metros** (1 unidade de UV = 1 m): densidade de textura uniforme e sem distorção nas faces planas. O nó Mapping ajusta a repetição ao tamanho real de cada textura. As malhas têm um mapa `UVMap` cada.
+- **Arco (`Barra_Arco`, uma curva Bézier com tubo de raio 0,14):** o Blender gera o UV da curva automaticamente (verificado: a malha avaliada tem `UVMap`), com U ao longo da curva e V ao redor do tubo, de 0 a 1. Como esse UV não está em metros, o arco usa uma cópia do material com a escala do Mapping = (comprimento da curva ÷ 2,5; circunferência ÷ 2,5), para a textura não esticar.
+- **Limitação conhecida:** na projeção em caixa, faces opostas (frente/trás) caem no mesmo lugar do UV e **as ilhas se sobrepõem** (visível no UV Editor). Isso não atrapalha texturas repetidas (*tileable*), mas não serviria para *baking*. No arco, o V não é periódico: pode aparecer uma costura de textura ao longo do tubo.
+- As pernas das cadeiras usam o mesmo material do pilar (escala 0,4), então a textura fica um pouco maior nelas do que no pilar, já que as cadeiras têm escala 1,6.
 
 ## 5. Origem e licença das texturas
 
-Todas vêm do **Poly Haven**, licença **CC0** (domínio público, uso livre, sem exigência de crédito; creditadas aqui mesmo assim). Resolução 2K, JPG.
+Todas vêm do **Poly Haven**, licença **CC0** (domínio público; creditadas aqui mesmo assim). Resolução 2K, JPG.
 
 | Textura | Autoria | Link |
 |---------|---------|------|
-| Metal Plate (cor, roughness, metallic, normal GL) | Rob Tuytel | https://polyhaven.com/a/metal_plate |
+| Blue Metal Plate (cor, roughness, normal GL) | Rob Tuytel | https://polyhaven.com/a/blue_metal_plate |
 | Wood Table 001 (cor, roughness, normal GL) | Dimitrios Savva (fotografia) e Rico Cilliers (processamento) | https://polyhaven.com/a/wood_table_001 |
 
-As demais imagens da cena (fachada, Rio, rua) são as da AP1/AP2 e continuam com os créditos já registrados em `AP1/ref/creditos_imagens.txt`.
+As demais imagens da cena (fachada, Rio, rua) são as da AP1/AC04 e continuam com os créditos registrados em `AP1/ref/creditos_imagens.txt`.
 
 ## 6. Ajustes de cena registrados
 
-- **Ray tracing do EEVEE ligado** (`use_raytracing = True`) para que o espelho e o metal mostrem reflexos reais. Estava desligado na AP2. Nenhuma luz foi movida nem alterada; câmera e iluminação são as da AP2.
-- Adição do painel `Espelho_Sala` (descrito acima).
-- Imagens empacotadas no `.blend` (`File > External Data > Pack Resources`): sem caminhos locais quebrados.
+- **Ray tracing do EEVEE ligado** (`use_raytracing = True`) para o espelho e o metal terem reflexos reais; estava desligado na AC04. Nenhuma luz, câmera, posição de objeto ou escala foi alterada.
+- Imagens empacotadas no `.blend` (`File > External Data > Pack Resources`): sem caminhos locais quebrados (verificado: nenhuma imagem externa sem pacote).
 
 ## 7. Como a iluminação influenciou a aparência
 
-Observado no render final (`AC05_CaioMedeiros_render.png`):
+Observado nos renders (`AC05_CaioMedeiros_render.png` e `AC05_CaioMedeiros_render_detalhe.png`):
 
-- **Madeira:** o veio da textura e o relevo do normal map aparecem no tampo e nas bordas das carteiras. As carteiras da frente têm reflexo especular com tom azulado/arroxeado, ou seja, a rugosidade da madeira (vinda do mapa) deixa o reflexo ainda visível. O mundo (`World`) é um fundo azul uniforme (0,45; 0,66; 0,95, intensidade 0,5) e não há HDRI.
-- **Metal:** a cena não tem HDRI para o metal refletir, então ele aparece escuro e o padrão de chapa xadrez só é percebido nos trechos visíveis das pernas (por exemplo, embaixo da carteira à esquerda). Um HDRI de ambiente deixaria o metal mais legível (não aplicado, para preservar a iluminação da AP2).
-- **Espelho:** com ray tracing ligado, o painel mostra as carteiras e cadeiras refletidas na parte inferior; o restante da superfície aparece em cinza-azulado liso. Antes de girar o painel ~26°, ele refletia só uma área uniforme e parecia um retângulo cinza.
-- **Palavra Ibmec:** continua legível e com as mesmas cores; o branco e o amarelo mantêm a leitura contra o painel azul.
-- A madeira PBR ficou **mais escura** (marrom-avermelhado) que a cor lisa original da AP2 (bege). É a cor real da fotografia da textura, e aumenta o contraste da palavra Ibmec que está apoiada sobre a mesa.
+- **Madeira:** o veio e o relevo do normal map aparecem no assento e no encosto; o assento mostra um brilho suave na borda, vindo da rugosidade do mapa. Todas as quatro cadeiras ficam iguais, ao contrário da AC04, onde cada uma tinha uma cor e um modelo diferentes.
+- **Metal azul:** com a cor da textura muito escura, arco, pilares e pernas das cadeiras aparecem em azul-marinho quase preto. No render de detalhe, as curvas do arco e as bordas das pernas mostram brilhos claros, e o riscado/desgaste da textura aparece nos pilares.
+- **Espelho:** as coberturas das alas e o vidro da entrada aparecem em azul claro, próximo da cor do `World` (0,27; 0,48; 0,81), ou seja, refletem o fundo azul da cena; no render de detalhe também se vê a parte quebrada do vidro, com a pedra e o ônibus atrás. Com `Roughness = 0,03` o reflexo é nítido.
+- **Luzes:** a `Luz_Key` (Sun) continua projetando as sombras das cadeiras no piso; os materiais PBR respondem às mesmas luzes da AC04, sem ajuste.
+- **Palavra Ibmec:** a placa/logo continua legível, com as mesmas cores da AC04.
 
 ## 8. Observações
 
-- O arquivo foi gerado com o **Blender 5.2.2** (não o 4.5 LTS pedido no enunciado), pois é a versão disponível no ambiente de trabalho. Um `.blend` salvo na 5.x pode não abrir no 4.5; o script `ac05_materiais_pbr.py` aplica os mesmos passos e pode ser executado em uma cópia da AP2 em qualquer versão 4.5+.
-- O render entregue é do modo Rendered (EEVEE), pela câmera principal. Não fiz capturas separadas do Material Preview.
+- O arquivo foi salvo no **Blender 5.2.2**, e não no 4.5 LTS pedido no enunciado. Um `.blend` salvo na 5.x pode não abrir no 4.5; o script `ac05_materiais_pbr.py` aplica os mesmos passos a uma cópia da AC04 (o script ainda não foi testado no 4.5).
+- O render entregue é do modo Rendered (EEVEE), pela câmera principal; não fiz capturas separadas do Material Preview.
