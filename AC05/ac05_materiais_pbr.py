@@ -1,4 +1,4 @@
-"""AC05 - Evolução da Cena: Materiais PBR e Texturas (Blender 4.5+/5.x).
+"""AC05 - Evolução da Cena: Materiais PBR e Texturas (Blender 4.5 LTS).
 
 Parte da cena da AC04 (AC04/AC04_CaioMedeiros.blend), sem alterar o original.
 

@@ -1,6 +1,6 @@
 # AC05 — Evolução da Cena: Materiais PBR e Texturas
 
-**Aluno:** Caio Medeiros · **Disciplina:** Computação Gráfica (CG_26.2_8001) · **Ferramenta:** Blender 5.2.2
+**Aluno:** Caio Medeiros · **Disciplina:** Computação Gráfica (CG_26.2_8001) · **Ferramenta:** Blender 4.5.14 LTS
 
 ## Arquivos entregues
 
@@ -91,5 +91,5 @@ Observado nos renders (`AC05_CaioMedeiros_render.png` e `AC05_CaioMedeiros_rende
 
 ## 8. Observações
 
-- O arquivo foi salvo no **Blender 5.2.2**, e não no 4.5 LTS pedido no enunciado. Um `.blend` salvo na 5.x pode não abrir no 4.5; o script `ac05_materiais_pbr.py` aplica os mesmos passos a uma cópia da AC04 (o script ainda não foi testado no 4.5).
+- O `.blend`, os dois renders e as capturas do Shader Editor e do UV Editor foram gerados e salvos no **Blender 4.5.14 LTS** (EEVEE Next), a mesma versão da AC04. Conferido ao abrir o arquivo no 4.5.14: ligações e espaços de cor dos mapas, UVs e imagens empacotadas (nenhuma externa sem pacote). O script `ac05_materiais_pbr.py` foi executado nessa versão.
 - O render entregue é do modo Rendered (EEVEE), pela câmera principal; não fiz capturas separadas do Material Preview.
