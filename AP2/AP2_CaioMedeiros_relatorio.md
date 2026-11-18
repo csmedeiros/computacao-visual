@@ -69,6 +69,7 @@ Mapas: Base Color em sRGB; Roughness e Normal em Non-Color; o Normal passa pelo 
 - **Análise de movimento quadro a quadro (360 quadros):** a diferença média entre quadros consecutivos só passa de 60 nos dois cortes (quadros 120 e 265, previstos). Não há saltos isolados fora deles; o movimento é contínuo e aumenta durante a aproximação final do voo (quadros ~238–263).
 - **Calçada estourada:** a calçada saía branca (superexposta) no plano baixo do M1 e no piso da sala; escureci a cor base de `MAT_Calcada_PBR` (0,22; 0,23; 0,25) e re-renderizei o vídeo.
 - **Bloco verde na descida para a rua (quadros ~237–250):** era o plano de gramado (`Rua_Chao`, `Rua_Chao2`) aparecendo ao lado das fotos. Estendi a invisibilidade do gramado até o quadro 264 (chave de `hide_render` movida de 237 para 265); o fundo passa a mostrar a foto da baía e do campus.
+- **Chegada à rua (quadros 237–264):** o modelo 3D da Barra (laje, vidro, ala, pilares, arco, faixa, placa e janelas) aparecia como polígonos brancos e azulados sobre a foto da rua. Escondi essas peças só nesse intervalo (`hide_render` com interpolação constante), e a aproximação passa a mostrar a foto da fachada limpa.
 - **Arquivo antigo a 30 fps/450 quadros:** o vídeo anterior da pasta não atendia ao enunciado; foi re-renderizado a 24 fps, 360 quadros.
 
 ## Fontes e licenças
