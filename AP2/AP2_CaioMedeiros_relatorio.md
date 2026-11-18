@@ -8,6 +8,7 @@
 |------|---------|
 | Cena com animação, materiais PBR, texturas (empacotadas), luzes, câmera e saída | `AP2_CaioMedeiros.blend` |
 | Vídeo final, H.264, 1920×1080, 24 fps, 360 quadros (15 s) | `AP2_CaioMedeiros.mp4` |
+| Storyboard atualizado (6 quadros do vídeo final, por momento) | `AP2_CaioMedeiros_storyboard.png` |
 | Quadros representativos | `AP2_CaioMedeiros_frame_040.png`, `_150.png`, `_220.png`, `_330.png` |
 | Texturas PBR da AC05 (também empacotadas) | `textures_pbr/` |
 
@@ -22,6 +23,10 @@ A palavra **Ibmec** nasce letra a letra, a câmera voa por uma trajetória sobre
 | `M1_Inicio` | 1–119 | Letras I, b, m, e, c e o pingo amarelo surgem em sequência (escala 0 → 1,12 → 1,0) | Plano fixo baixo, frente da palavra |
 | `M2_Destaque` | 120–264 | Câmera segue a curva `Voo_Foguete` (constraint Follow Path); o cenário de rua aparece só nesse trecho; as letras somem no quadro 264 | Voo sobre baía e fachada da Barra |
 | `M3_Sala` | 265–360 | A palavra reaparece (posição e escala animadas no `Letras`) sobre o quadro da sala; a câmera se afasta e sobe levemente | Plano frontal da sala, com 3 mesas e 6 cadeiras |
+
+## Storyboard
+
+O storyboard foi atualizado para refletir a duração final (15 s, 24 fps) e os três momentos: ver `AP2_CaioMedeiros_storyboard.png`. A ideia da AP1 (palavra Ibmec + Barra + cadeiras) foi mantida; a mudança é a ordem: a marca se forma, a câmera voa até a Barra e termina na sala.
 
 ## Propriedades animadas e timing
 
@@ -58,6 +63,7 @@ Mapas: Base Color em sRGB; Roughness e Normal em Non-Color; o Normal passa pelo 
 - **Texturas em movimento:** as cadeiras compartilham uma única malha com UVs em metros, então a escala da textura é igual na fachada e na sala.
 - **Legibilidade da marca:** letras brancas com rugosidade 0,35, sem normal map, para que não sejam prejudicadas pela luz nem pelas texturas.
 - **Mesas sem UV:** geradas por projeção em caixa em script antes de aplicar a madeira.
+- **Revisão das curvas:** conferi por script que todas as chaves de câmera e letras são Bézier com alças *auto clamped* (sem ultrapassar os valores das chaves, exceto o overshoot intencional de 1,12 nas letras); mapas Roughness/Normal em Non-Color e Normal ligado ao nó Normal Map nos três materiais com textura.
 - **Arquivo antigo a 30 fps/450 quadros:** o vídeo anterior da pasta não atendia ao enunciado; foi re-renderizado a 24 fps, 360 quadros.
 
 ## Fontes e licenças
