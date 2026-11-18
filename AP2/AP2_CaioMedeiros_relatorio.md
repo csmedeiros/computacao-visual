@@ -64,6 +64,8 @@ Mapas: Base Color em sRGB; Roughness e Normal em Non-Color; o Normal passa pelo 
 - **Legibilidade da marca:** letras brancas com rugosidade 0,35, sem normal map, para que não sejam prejudicadas pela luz nem pelas texturas.
 - **Mesas sem UV:** geradas por projeção em caixa em script antes de aplicar a madeira.
 - **Revisão das curvas:** conferi por script que todas as chaves de câmera e letras são Bézier com alças *auto clamped* (sem ultrapassar os valores das chaves, exceto o overshoot intencional de 1,12 nas letras); mapas Roughness/Normal em Non-Color e Normal ligado ao nó Normal Map nos três materiais com textura.
+- **Calçada estourada:** a calçada saía branca (superexposta) no plano baixo do M1 e no piso da sala; escureci a cor base de `MAT_Calcada_PBR` (0,22; 0,23; 0,25) e re-renderizei o vídeo.
+- **Limitação conhecida:** perto de 10 s (quadros ~237–250), na descida para a rua, o gramado aparece como plano verde liso ao lado da foto da rua; não corrigi sem refazer o cenário de transição.
 - **Arquivo antigo a 30 fps/450 quadros:** o vídeo anterior da pasta não atendia ao enunciado; foi re-renderizado a 24 fps, 360 quadros.
 
 ## Fontes e licenças
